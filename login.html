@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <style>
+    /* Base styling */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden;
+    }
+    /* Full-page background container */
+    .bg-slideshow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background-size: cover;
+      background-position: center;
+      transition: background-image 1s ease-in-out, background-color 1s ease-in-out;
+    }
+    /* Header styling */
+    header {
+      background-color: rgba(0, 0, 0, 0.7);
+      color: #e9cdcd;
+      font-family: cursive;
+      padding: 0.05em;
+      text-align: center;
+      height: 5%;
+    }
+    /* Footer styling */
+    footer {
+      background-color: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 50px; /* Adjust height as needed */
+      display: flex;
+      justify-content: center; /* Centers horizontally */
+      align-items: center;     /* Centers vertically */
+    }
+    /* Login form container */
+    .login-container {
+      background: rgba(255, 255, 255, 0.9);
+      max-width: 350px;
+      padding: 2em;
+      border-radius: 8px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      margin: 100px auto;
+    }
+    .login-container h2 {
+      text-align: center;
+      margin-bottom: 1em;
+      color: #333;
+    }
+    .login-container form {
+      display: flex;
+      flex-direction: column;
+    }
+    .login-container input {
+      padding: 0.8em;
+      margin-bottom: 1em;
+      border: 1px solid #3315ca;
+      border-radius: 4px;
+      font-size: 1em;
+      width: 100%;
+    }
+    .login-container button {
+      padding: 0.8em;
+      background-color: #007BFF;
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .login-container button:hover {
+      background-color: #0056b3;
+    }
+    .login-container p {
+      text-align: center;
+      margin-top: 1em;
+      font-size: 0.9em;
+    }
+    .login-container a {
+      color: #000000;
+      text-decoration: none;
+    }
+    .login-container a:hover {
+      text-decoration: underline;
+    }
+    /* Floating label styles */
+    .input-container {
+      position: relative;
+      margin-bottom: 1em;
+      width: 92%;
+    }
+    /* Hide the default placeholder text */
+    .input-container input::placeholder {
+      color: transparent;
+    }
+    /* Floating label initially inside the input box */
+    .input-container label {
+      position: absolute;
+      left: 0.8em;
+      top: 0.8em; /* matches the input padding */
+      font-size: 1em;
+      color: #251a1a;
+      pointer-events: none;
+      transition: all 0.2s ease;
+    }
+    /* When input is focused or not empty, float the label upward */
+    .input-container input:focus + label,
+    .input-container input:not(:placeholder-shown) + label {
+      top: 0.1em;  /* adjust so label is near the top inside the input */
+      font-size: 0.6em;
+      color: #007BFF;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background slideshow container -->
+  <div class="bg-slideshow"></div>
+  
+  <!-- Header -->
+  <header>
+    <h1 id= "nameDisplay"></h1>
+  </header>
+  <div id="g_id_onload"
+     data-client_id="503129604907-apkksibc94gue4285ken0d926ab6rtgc.apps.googleusercontent.com"
+     data-context="signin"
+     data-ux_mode="popup"
+     data-callback="handleCredentialResponse"
+     data-auto_prompt="false">
+</div>
+
+<div class="g_id_signin" data-type="standard"></div>
+
+  <script>
+    let nameText = "WELCOME TO DINESYNC!";  
+    let index = 0;
+
+    function typeLetter() {
+        if (index < nameText.length) {
+            document.getElementById("nameDisplay").textContent += nameText[index];
+            index++;
+        } else {
+            clearInterval(timer);
+            document.getElementById("enterButton").classList.remove("hidden");
+        }
+    }
+
+
+    let timer = setInterval(typeLetter, 100);
+
+    function redirectToLogin() {
+        window.location.href = "login.html";
+    }
+</script>
+
+  
+  <!-- Login form -->
+  <div class="login-container">
+    <h2> Log In & Explore  </h2>
+    <form id="loginForm">
+      <!-- Username with floating label -->
+      <div class="input-container">
+        <input type="text" id="username" placeholder=" " required>
+        <label for="username">Username</label>
+      </div>
+      <!-- Password with floating label -->
+      <div class="input-container">
+        <input type="password" id="password" placeholder=" " required>
+        <label for="password">Password</label>
+      </div>
+      <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="signup.html">sign up.</a></p>
+  </div>
+  
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 DineSync. All rights reserved.</p>
+  </footer>
+  
+  <script>
+    const slides = [
+      {
+        image: "https://media.glassdoor.com/l/0a/75/c1/a7/college.jpg?signature=002bb839dfd132886a71377684599b3968b40441e7eebdbdba28184f694df758",
+        color: "rgba(0, 0, 0, 0.3)"
+      },
+      {
+        image: "https://chennai.vit.ac.in/wp-content/uploads/2020/03/campus-banner.jpg",
+        color: "rgba(255, 0, 0, 0.3)"
+      },
+      {
+        image: "https://vitap.ac.in/_next/static/media/governancenav.3eec7c1e.png",
+        color: "rgba(0, 0, 255, 0.3)"
+      }
+    ];
+    
+    let currentSlide = 0;
+    const slideshow = document.querySelector('.bg-slideshow');
+    
+    function updateBackground() {
+      const slide = slides[currentSlide];
+      slideshow.style.backgroundImage = `url('${slide.image}')`;
+      slideshow.style.backgroundColor = slide.color;
+      currentSlide = (currentSlide + 1) % slides.length;
+    }
+    
+    // Initialize and update every 5 seconds
+    updateBackground();
+    setInterval(updateBackground, 5000);
+    
+    // Login form submission logic
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          window.location.href = data.redirect;
+        } else {
+          alert("Invalid credentials");
+        }
+      })
+      .catch(error => console.error("Error:", error));
+    });
+  </script>
+</body>
+</html>
