@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student Details Entry</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Bootstrap CSS (v4.5.2) -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <ul class="menu">
+      <li><a href= studentdetails.html><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+      <li><a href="service.html"><i class="fas fa-concierge-bell"></i> Services</a></li>
+      <li><a href="login.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+    </ul>
+  </header>
+  <body class="bg-step1">
+
+
+  <div class="main-content">
+    <div class="wizard">
+      <h2 class="text-center">Enter Your Details Below</h2>
+      <div class="progress mt-3">
+        <div class="progress-bar" role="progressbar" style="width: 33%;"></div>
+      </div>
+      <form id="studentForm">
+        <!-- Step 1 -->
+        <div class="step active" id="step1">
+          <div class="form-group">
+            <input type="text" class="form-control" id="reg_no" placeholder="Registration Number" required>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="name" placeholder="Student Name" required>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="block" placeholder="Block" required>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="room_no" placeholder="Room Number" required>
+          </div>
+          <button type="button" id="next1" class="btn btn-custom" onclick="validateRegNo(event)">Next</button>
+
+        </div>
+        
+        <!-- Step 2 -->
+        <div class="step" id="step2">
+          <div class="form-group">
+            <input type="text" class="form-control" id="dining_mess" placeholder="Dining Mess Name" required>
+          </div>
+          <div class="form-group">
+            <select class="form-control" id="mess_type" required>
+              <option value="">Select Mess Type</option>
+              <option value="Veg">Veg</option>
+              <option value="Non-Veg">Non-Veg</option>
+              <option value="Special">Special</option>
+              <option value="Night mess">Night Mess</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" id="food_suggestion" placeholder="Food Item Suggestion"></textarea>
+          </div>
+          <button type="button" id="prev1" class="btn btn-secondary">Previous</button>
+          <button type="button" id="next2" class="btn btn-custom">Next</button>
+        </div>
+        
+        <!-- Step 3 -->
+        <div class="step" id="step3">
+          <div class="form-group">
+            <select class="form-control" id="meal_type" required>
+              <option value="">Select Meal Type</option>
+              <option value="breakfast">Breakfast</option>
+              <option value="lunch">Lunch</option>
+              <option value="snacks">Snacks</option>
+              <option value="dinner">Dinner</option>
+              <option value="night mess">Night Mess</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <select class="form-control" id="feasibility" required>
+              <option value="">Feasibility for Mass Production</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+          <button type="button" id="prev2" class="btn btn-secondary">Previous</button>
+          <button type="submit" class="btn btn-custom">Submit</button>
+          <div class="thank-you">
+            <h3>Thank You!</h3>
+            <p>Your submission is appreciated.</p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer class="text-center">
+    <ul class="footer-links">
+      <li><a href="#">Privacy</a></li>
+      <li><a href="#">Terms</a></li>
+      <li><a href="#">Support</a></li>
+      <li><a href="#">FAQ</a></li>
+    </ul>
+  </footer>
+  <!-- Bootstrap JS and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- External Script -->
+  <script src="script.js"></script>
+</body>
+</html>

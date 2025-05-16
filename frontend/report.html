@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Download Reports</title>
+  <!-- Bootstrap CSS (from CDN) -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Font Awesome (for icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  
+  <!-- Custom CSS -->
+  <style>
+    :root {
+      --dark-bg: #1c1d22;
+      --accent: #7289da;
+      --accent-hover: #e6e6e6;
+      --footer-bg: #2c2f33;
+      --footer-text: #ffffff;
+      --main-font: 'Poppins', sans-serif;
+      --nav-bg: #2c2f33;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: var(--main-font);
+      background: var(--dark-bg);
+      color: #fff;
+    }
+
+    /* Navigation Bar Styling */
+    .navbar {
+      background: var(--nav-bg);
+      padding: 0.75rem 1rem;
+    }
+    .navbar-brand, .navbar-nav .nav-link {
+      color: #ffffff !important;
+      font-size: 1.2rem;
+    }
+    .navbar-nav .nav-link:hover {
+      color: var(--accent);
+    }
+
+    /* Main content */
+    .main-content {
+      flex: 1;
+      padding: 40px 0;
+    }
+    
+    /* Section padding for report downloads */
+    section {
+      background: #fff;
+      color: #000;
+      margin-bottom: 30px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    section input,
+    section select,
+    section button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--footer-bg);
+      color: var(--footer-text);
+      text-align: center;
+      padding: 10px 0;
+      font-size: 0.85rem;
+      box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.3);
+    }
+    footer a {
+      color: var(--footer-text);
+      text-decoration: none;
+      margin: 0 5px;
+    }
+    footer a:hover {
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body class="d-flex flex-column">
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="#"><i class="fas fa-cogs"></i> Admin Dashboard</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+      <span class="navbar-toggler-icon"><i class="fas fa-bars" style="color:#fff;"></i></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><a class="nav-link" href="report.html"><i class="fas fa-home"></i> Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+        <li class="nav-item"><a class="nav-link" href="service.html"><i class="fas fa-info-circle"></i> Services</a></li>
+        <!-- Logout Button -->
+        <li class="nav-item"><a class="nav-link" href="login.html" id="logoutButton"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <!-- Main Content -->
+  <div class="main-content container">
+    <h1 class="text-center text-white mb-4"><i class="fas fa-chart-line"></i> Generate Reports</h1>
+    
+    <!-- Report Download Sections -->
+    <div class="row">
+      <div class="col-md-6">
+        <section>
+          <h2>Student-wise Report</h2>
+          <input type="text" id="reportStudentName" placeholder="Enter Student Name">
+          <select id="reportFormatStudent">
+            <option value="excel">Excel</option>
+            <option value="pdf">PDF</option>
+          </select>
+          <button class="btn btn-primary" onclick="generateStudentReport()">Download Student Report</button>
+        </section>
+      </div>
+      
+      <div class="col-md-6">
+        <section>
+          <h2>Meal-wise Report</h2>
+          <select id="reportMealType">
+            <option value="">Select Meal Type</option>
+            <option value="breakfast">Breakfast</option>
+            <option value="lunch">Lunch</option>
+            <option value="snacks">Snacks</option>
+            <option value="dinner">Dinner</option>
+            <option value="night mess">Night Mess</option>
+          </select>
+          <select id="reportFormatMeal">
+            <option value="excel">Excel</option>
+            <option value="pdf">PDF</option>
+          </select>
+          <button class="btn btn-primary" onclick="generateMealReport()">Download Meal Report</button>
+        </section>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-6">
+        <section>
+          <h2>Weekly Report</h2>
+          <select id="reportFormatWeekly">
+            <option value="excel">Excel</option>
+            <option value="pdf">PDF</option>
+          </select>
+          <button class="btn btn-primary" onclick="generateWeeklyReport()">Download Weekly Report</button>
+        </section>
+      </div>
+      
+      <div class="col-md-6">
+        <section>
+          <h2>Monthly Report</h2>
+          <select id="reportFormatMonthly">
+            <option value="excel">Excel</option>
+            <option value="pdf">PDF</option>
+          </select>
+          <button class="btn btn-primary" onclick="generateMonthlyReport()">Download Monthly Report</button>
+        </section>
+      </div>
+    </div>
+    
+  </div>
+  
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 DineSync!
+  
+  <!-- jQuery and Bootstrap JS (from CDN) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Original Script (Do not change the "SCRITEP") -->
+  <script>
+    function generateStudentReport() {
+      const studentName = document.getElementById('reportStudentName').value;
+      const format = document.getElementById('reportFormatStudent').value;
+      if (!studentName) {
+        alert('Please enter a student name.');
+        return;
+      }
+      window.open(`http://localhost:3000/reports/student/${studentName}?format=${format}`, '_blank');
+    }
+    
+    function generateWeeklyReport() {
+      const format = document.getElementById('reportFormatWeekly').value;
+      window.open(`http://localhost:3000/reports/weekly?format=${format}`, '_blank');
+    }
+    
+    function generateMonthlyReport() {
+      const format = document.getElementById('reportFormatMonthly').value;
+      window.open(`http://localhost:3000/reports/monthly?format=${format}`, '_blank');
+    }
+    
+    function generateMealReport() {
+      const mealType = document.getElementById('reportMealType').value;
+      const format = document.getElementById('reportFormatMeal').value;
+      if (!mealType) {
+        alert('Please select a meal type.');
+        return;
+      }
+      window.open(`http://localhost:3000/reports/meal/${mealType}?format=${format}`, '_blank');
+    }
+    
+    function reviewReport() {
+      document.getElementById('reportPreview').style.display = 'block';
+    }
+    
+    function hideReportPreview() {
+      document.getElementById('reportPreview').style.display = 'none';
+    }
+    
+    function exportExcel() {
+      alert('Exporting report as Excel...');
+    }
+    
+    // New exportPDF function
+    function exportPDF() {
+      alert('Exporting report as PDF...');
+    }
+  </script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body>
+</html>
