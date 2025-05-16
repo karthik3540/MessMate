@@ -151,57 +151,67 @@
     <p>&copy; 2025 MessMate. All rights reserved.</p>
   </footer>
   
-  <script>
-    // Array of background images with overlay colors
-    const slides = [
-      {
-        image: "https://media.glassdoor.com/l/0a/75/c1/a7/college.jpg?signature=002bb839dfd132886a71377684599b3968b40441e7eebdbdba28184f694df758",
-        color: "rgba(0, 0, 0, 0.3)"
-      },
-      {
-        image: "https://chennai.vit.ac.in/wp-content/uploads/2020/03/campus-banner.jpg",
-        color: "rgba(255, 0, 0, 0.3)"
-      },
-      {
-        image: "https://vitap.ac.in/_next/static/media/governancenav.3eec7c1e.png",
-        color: "rgba(0, 0, 255, 0.3)"
-      }
-    ];
-    
-    let currentSlide = 0;
-    const slideshow = document.querySelector('.bg-slideshow');
-    
-    function updateBackground() {
-      const slide = slides[currentSlide];
-      slideshow.style.backgroundImage = `url('${slide.image}')`;
-      slideshow.style.backgroundColor = slide.color;
-      currentSlide = (currentSlide + 1) % slides.length;
+ <script>
+  // Background slideshow logic
+  const slides = [
+    {
+      image: "https://media.glassdoor.com/l/0a/75/c1/a7/college.jpg?signature=002bb839dfd132886a71377684599b3968b40441e7eebdbdba28184f694df758",
+      color: "rgba(0, 0, 0, 0.3)"
+    },
+    {
+      image: "https://chennai.vit.ac.in/wp-content/uploads/2020/03/campus-banner.jpg",
+      color: "rgba(255, 0, 0, 0.3)"
+    },
+    {
+      image: "https://vitap.ac.in/_next/static/media/governancenav.3eec7c1e.png",
+      color: "rgba(0, 0, 255, 0.3)"
     }
-    
-    // Initialize the background and update every 5 seconds
-    updateBackground();
-    setInterval(updateBackground, 5000);
-    fetch("https://messmate-x7pw.onrender.com/signup", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ username, password, role })
-})
-.then(response => {
-  if (!response.ok) {
-    return response.json().then(errData => {
-      throw new Error(errData.message || "Signup failed");
-    });
-  }
-  return response.json();
-})
-.then(data => {
-  alert(data.message);
-  window.location.href = "login.html";
-})
-.catch(error => {
-  alert("Error: " + error.message);
-});
+  ];
 
-  </script>
+  let currentSlide = 0;
+  const slideshow = document.querySelector('.bg-slideshow');
+
+  function updateBackground() {
+    const slide = slides[currentSlide];
+    slideshow.style.backgroundImage = `url('${slide.image}')`;
+    slideshow.style.backgroundColor = slide.color;
+    currentSlide = (currentSlide + 1) % slides.length;
+  }
+
+  updateBackground();
+  setInterval(updateBackground, 5000);
+
+  // Form submission logic
+  const form = document.getElementById("signupForm");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault(); // prevent page reload
+
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    const role = document.getElementById("role").value;
+
+    try {
+      const response = await fetch("https://messmate-x7pw.onrender.com/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password, role })
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Signup failed");
+      }
+
+      const data = await response.json();
+      alert(data.message);
+      window.location.href = "login.html";
+    } catch (error) {
+      alert("Error: " + error.message);
+      console.error("Fetch error:", error);
+    }
+  });
+</script>
+
 </body>
 </html>
