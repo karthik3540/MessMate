@@ -195,6 +195,10 @@ app.get("/reports/monthly", (req, res) => {
     const sql = "SELECT * FROM mess_entries WHERE MONTH(entry_date) = MONTH(CURDATE())";
     handleReportRequest(sql, "Monthly_Report", req, res);
 });
+app.get("/", (req, res) => {
+  res.send("Backend is alive!");
+});
+
 
 // Meal-wise report
 app.get("/reports/meal/:meal", (req, res) => {
@@ -215,7 +219,6 @@ app.get("/reports/meal/:meal", (req, res) => {
     });
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+app.listen(10000, () => {
+  console.log("Server running on port 10000");
 });
