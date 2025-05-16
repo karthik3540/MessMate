@@ -82,7 +82,7 @@
         feasibility: document.getElementById("feasibility").value
       };
 
-      fetch("http://localhost:3000/entries", {
+      fetch("https://messmate-x7pw.onrender.com", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
