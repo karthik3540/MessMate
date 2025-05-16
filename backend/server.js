@@ -29,20 +29,21 @@ connection.connect(err => {
 
 // --------------------- User Endpoints ---------------------
 // Register User (Signup)
-app.post("/register", (req, res) => {
-    const { username, password, role } = req.body;
+app.post("/signup", (req, res) => {
+  const { username, password, role } = req.body;
 
-    if (!username || !password || !role) {
-        return res.status(400).json({ error: "All fields are required" });
+  if (!username || !password || !role) {
+    return res.status(400).json({ error: "All fields are required" });
+  }
+
+  const sql = "INSERT INTO users (username, password, role) VALUES (?, ?, ?)";
+  connection.query(sql, [username, password, role], (err, result) => {
+    if (err) {
+      console.error("Error inserting user:", err);
+      return res.status(500).json({ error: "Registration failed" });
     }
-    const sql = "INSERT INTO users (username, password, role) VALUES (?, ?, ?)";
-    connection.query(sql, [username, password, role], (err, result) => {
-        if (err) {
-            console.error("Error inserting user:", err);
-            return res.status(500).json({ error: "Registration failed" });
-        }
-        res.json({ success: true, message: "User registered successfully!" });
-    });
+    res.json({ success: true, message: "User registered successfully!" });
+  });
 });
 
 // Login User
@@ -219,6 +220,7 @@ app.get("/reports/meal/:meal", (req, res) => {
     });
 });
 
-app.listen(10000, () => {
-  console.log("Server running on port 10000");
+const PORT = process.env.PORT || 10000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
