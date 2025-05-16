@@ -181,27 +181,27 @@
     // Initialize the background and update every 5 seconds
     updateBackground();
     setInterval(updateBackground, 5000);
-    
-    // Sign Up form submission logic
-    document.getElementById("signupForm").addEventListener("submit", function(event) {
-      event.preventDefault();
-      
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
-      const role = document.getElementById("role").value;
-      
-      fetch("http://localhost:3000/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password, role })
-      })
-      .then(response => response.json())
-      .then(data => {
-        alert(data.message);
-        window.location.href = "login.html";
-      })
-      .catch(error => console.error("Error:", error));
+    fetch("https://messmate-x7pw.onrender.com/signup", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ username, password, role })
+})
+.then(response => {
+  if (!response.ok) {
+    return response.json().then(errData => {
+      throw new Error(errData.message || "Signup failed");
     });
+  }
+  return response.json();
+})
+.then(data => {
+  alert(data.message);
+  window.location.href = "login.html";
+})
+.catch(error => {
+  alert("Error: " + error.message);
+});
+
   </script>
 </body>
 </html>
