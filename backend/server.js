@@ -9,10 +9,13 @@ const PDFDocument = require("pdfkit");
 const fs = require("fs");
 const app = express();
 
+const cors = require("cors");
+
 app.use(cors({
-  origin: "https://messmate-x7pw.onrender.com", 
+  origin: "https://karthik3540.github.io",
   credentials: true
 }));
+
 
 app.use(bodyParser.json());
 
