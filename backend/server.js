@@ -9,7 +9,6 @@ const PDFDocument = require("pdfkit");
 const fs = require("fs");
 const app = express();
 
-const cors = require("cors");
 
 app.use(cors({
   origin: "https://karthik3540.github.io",
