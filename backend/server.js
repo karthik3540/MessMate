@@ -10,7 +10,7 @@ const fs = require("fs");
 const app = express();
 
 app.use(cors({
-  origin: "https://karthik3540.github.io/MessMate/", 
+  origin: "https://messmate-x7pw.onrender.com", 
   credentials: true
 }));
 
