@@ -9,7 +9,11 @@ const PDFDocument = require("pdfkit");
 const fs = require("fs");
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: "https://karthik3540.github.io/MessMate/", 
+  credentials: true
+}));
+
 app.use(bodyParser.json());
 
 // Use connection pool to avoid handshake errors
