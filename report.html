@@ -183,17 +183,17 @@
         alert('Please enter a student name.');
         return;
       }
-      window.open(`http://localhost:3000/reports/student/${studentName}?format=${format}`, '_blank');
+      window.open(`https://messmate-x7pw.onrender.com/reports/student/${studentName}?format=${format}`, '_blank');
     }
     
     function generateWeeklyReport() {
       const format = document.getElementById('reportFormatWeekly').value;
-      window.open(`http://localhost:3000/reports/weekly?format=${format}`, '_blank');
+      window.open(`https://messmate-x7pw.onrender.com/reports/weekly?format=${format}`, '_blank');
     }
     
     function generateMonthlyReport() {
       const format = document.getElementById('reportFormatMonthly').value;
-      window.open(`http://localhost:3000/reports/monthly?format=${format}`, '_blank');
+      window.open(`https://messmate-x7pw.onrender.com/reports/monthly?format=${format}`, '_blank');
     }
     
     function generateMealReport() {
@@ -203,7 +203,7 @@
         alert('Please select a meal type.');
         return;
       }
-      window.open(`http://localhost:3000/reports/meal/${mealType}?format=${format}`, '_blank');
+      window.open(`https://messmate-x7pw.onrender.com/reports/meal/${mealType}?format=${format}`, '_blank');
     }
     
     function reviewReport() {
